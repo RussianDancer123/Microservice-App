@@ -1,0 +1,22 @@
+#spring.application.name=CompendiumClientService
+server:
+  port: 8081
+
+spring:
+  application:
+    name: compendium-client-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+dnd5api.host: www.dnd5eapi.co
