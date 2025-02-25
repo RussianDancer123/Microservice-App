@@ -8,12 +8,28 @@ spring:
   cloud:
     gateway:
       routes:
+#------------------------for testing - unlocked link for plain browser
+#        - id: compendium-client-service-without-auth
+#          uri: lb://compendium-client-service
+#          predicates:
+#            - Path=/compendium/skills/**
+#          filters:
+#            - RewritePath=/compendium/(.*), /api/v1/$1
+
         - id: compendium-client-service
           uri: lb://compendium-client-service
           predicates:
             - Path=/compendium/**
           filters:
             - RewritePath=/compendium/(.*), /api/v1/$1
+            - AddRequestHeader=Authorization, ${token}
+
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/microservice-realm
 
 eureka:
   client:

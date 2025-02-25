@@ -6,6 +6,12 @@ spring:
   application:
     name: compendium-client-service
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/microservice-realm
+
 eureka:
   client:
     serviceUrl:
