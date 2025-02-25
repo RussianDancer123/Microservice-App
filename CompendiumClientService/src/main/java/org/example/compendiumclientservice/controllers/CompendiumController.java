@@ -6,8 +6,10 @@ import org.example.compendiumclientservice.contracts.Entry;
 import org.example.compendiumclientservice.services.ICompendiumService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -17,31 +19,32 @@ import java.util.List;
 public class CompendiumController implements ICompendiumController {
     private final ICompendiumService compendiumService;
 
-    private List<Entry> getEntries(Entries entry) {
-        return compendiumService.getEntries(entry);
+    private Mono<ResponseEntity<List<Entry>>> getEntries(Entries entry) {
+        return compendiumService.getEntries(entry)
+                .map(entries -> {
+                    if (entries.isEmpty()) {
+                        return ResponseEntity.status(204).body((List<Entry>) null);
+                    }
+                    return ResponseEntity.ok(entries);
+                })
+                .onErrorResume(ex -> {
+                    System.err.println("Error fetching entries for " + entry + ": " + ex.getMessage());
+                    return Mono.just(ResponseEntity.status(500).body(null));
+                });
+
+
     }
 
-    @Override
-    @GetMapping("/skills")
-    public ResponseEntity<List<Entry>> getSkills() {
-        return ResponseEntity.ok(getEntries(Entries.SKILLS));
+    @GetMapping("/{entryType}")
+    public Mono<ResponseEntity<List<Entry>>> getEntriesByType(@PathVariable String entryType) {
+        Entries entry;
+        try {
+            entry = Entries.valueOf(entryType.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            return Mono.just(ResponseEntity.badRequest().body(null));
+        }
+
+        return getEntries(entry);
     }
 
-    @Override
-    @GetMapping("/spells")
-    public ResponseEntity<List<Entry>> getSpells() {
-        return ResponseEntity.ok(getEntries(Entries.SPELLS));
-    }
-
-    @Override
-    @GetMapping("/races")
-    public ResponseEntity<List<Entry>> getRaces() {
-        return ResponseEntity.ok(getEntries(Entries.RACES));
-    }
-
-    @Override
-    @GetMapping("/classes")
-    public ResponseEntity<List<Entry>> getClasses() {
-        return ResponseEntity.ok(getEntries(Entries.CLASSES));
-    }
 }
