@@ -22,8 +22,7 @@ spring:
             - Path=/compendium/**
           filters:
             - RewritePath=/compendium/(.*), /api/v1/$1
-            - AddRequestHeader=Authorization, ${token}
-
+            - PreserveHostHeader=true
 
   security:
     oauth2:
