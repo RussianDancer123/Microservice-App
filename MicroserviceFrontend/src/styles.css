@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+/* 🌙 Global Dark Mode Colors */
+:root {
+  --primary-color: #1abc9c;  /* 🟢 Muted Teal */
+  --background-color: #121212;  /* ⚫ True Black */
+  --text-color: #EAEAEA;  /* ⚪ Soft White */
+  --button-bg: #1E1E1E;  /* 🔘 Matte Gray */
+  --button-hover: #16a085;  /* 🟦 Teal */
+  --list-item-bg: #1E1E1E; /* 🔘 Matte Gray */
+  --list-item-hover: rgba(26, 188, 156, 0.2);  /* Light Teal Hover */
+  --shadow-color: rgba(0, 0, 0, 0.6);  /* 🌓 Subtle Dark Shadow */
+  --menu-bg: #1E1E1E;  /* ⚫ Matte Dark */
+  --menu-item-hover: #16a085;  /* 🟦 Hover Teal */
+}
+
+/* 🏠 Global Body and Layout */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}

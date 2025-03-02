@@ -16,9 +16,8 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeExchange(auth -> auth
-                        .pathMatchers("/public/**").permitAll()
-//                        -----------------------for testing - unlocked link for plain browser
-                        .pathMatchers("/api/v1/skills").permitAll()
+                        .pathMatchers("/eureka/**").permitAll()
+                        .pathMatchers("/actuator/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(

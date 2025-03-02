@@ -1,0 +1,56 @@
+/* 🌙 Navigation Menu Styles */
+
+/* 🌟 Menu Container */
+.menu {
+  background-color: var(--menu-bg);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* 🌟 Menu Links */
+.menu a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* 🌟 Menu Link Hover Effect */
+.menu a:hover {
+  background: var(--menu-item-hover);
+  color: var(--background-color);
+  transform: scale(1.05);
+}
+
+/* 🌟 Menu Button */
+.menu button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* 🌟 Button Hover Effect */
+.menu button:hover {
+  background: var(--menu-item-hover);
+  color: var(--background-color);
+  transform: scale(1.05);
+}
+
+/* 📱 Responsive Menu */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

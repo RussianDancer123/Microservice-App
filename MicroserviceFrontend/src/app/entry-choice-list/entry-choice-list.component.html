@@ -1,10 +1,16 @@
-<p>
-<button (click)="getEntries(Entries.spells); message='Spells:'">Spells</button>
-<button (click)="getEntries(Entries.skills); message='Skills:'">Skills</button>
-<button (click)="getEntries(Entries.races); message='Races:'">Races</button>
-<button (click)="getEntries(Entries.classes); message='Classes:'">Classes</button>
+<div class="compendium-section">
+<p class="compendium-buttons">
+  <button (click)="getEntries(Entries.spells); message='Spells:'">Spells</button>
+  <button (click)="getEntries(Entries.skills); message='Skills:'">Skills</button>
+  <button (click)="getEntries(Entries.races); message='Races:'">Races</button>
+  <button (click)="getEntries(Entries.classes); message='Classes:'">Classes</button>
 </p>
-<h1>{{ message }}</h1>
-<ul>
-  <li *ngFor="let entry of entries">{{ entry.index }}, {{ entry.name }}, {{ entry.url }}</li>
+
+<h1 class="compendium-message">{{ message }}</h1>
+
+<ul class="compendium-list">
+  <li *ngFor="let entry of entries">
+    {{ entry.index }}, {{ entry.name }}, {{ entry.url }}
+  </li>
 </ul>
+</div>

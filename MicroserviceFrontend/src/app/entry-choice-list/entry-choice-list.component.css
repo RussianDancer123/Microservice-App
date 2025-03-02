@@ -1,0 +1,62 @@
+/* 🌙 Compendium Component Styles */
+
+/* 🖱️ Buttons */
+.compendium-buttons button {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
+  margin: 5px;
+}
+
+.compendium-buttons button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}
+
+/* 🏷️ Title */
+.compendium-message {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 20px;
+  color: var(--text-color);
+}
+
+/* 📝 List Styles */
+.compendium-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.compendium-list li {
+  background-color: var(--list-item-bg);
+  color: var(--text-color);
+  padding: 12px 20px;
+  margin: 5px 0;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
+}
+
+.compendium-list li:hover {
+  background-color: var(--list-item-hover);
+  transform: translateY(-3px);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .compendium-buttons button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+  }
+
+  .compendium-message {
+    font-size: 1.5rem;
+  }
+}

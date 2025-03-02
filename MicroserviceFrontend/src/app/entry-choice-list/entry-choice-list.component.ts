@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {CompendiumApiService} from '../compendium-api.service';
 import {IEntry} from '../../interfaces/IEntry';
 import {NgForOf} from '@angular/common';
 import {Entries} from '../entries';
+import Keycloak from 'keycloak-js'
 
 @Component({
   selector: 'app-entry-choice-list',
@@ -17,6 +18,8 @@ export class EntryChoiceListComponent{
   protected entries: IEntry[] = [];
   protected message: string = "";
 
+  protected keycloak = inject(Keycloak)
+
   constructor(private compendiumApiService: CompendiumApiService) {
   }
 
@@ -30,4 +33,8 @@ export class EntryChoiceListComponent{
 
   //for html template (call with enums instead of multiple methods)
   protected readonly Entries = Entries;
+
+  logOut() {
+    this.keycloak.logout();
+  }
 }

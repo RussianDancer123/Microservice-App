@@ -23,8 +23,6 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/eureka/**").permitAll()
                         .pathMatchers("/actuator/**").permitAll()
-//                        -------------for testing - unlock link for plain browser
-                        .pathMatchers("/compendium/skills").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
@@ -35,7 +33,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(List.of("null", "http://localhost:4200"));
+        corsConfig.setAllowedOrigins(List.of("http://localhost:4200"));
         corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(List.of("*"));
         corsConfig.setAllowCredentials(true);
