@@ -18,7 +18,7 @@ public class SecurityConfig {
                 .authorizeExchange(auth -> auth
                         .pathMatchers("/public/**").permitAll()
 //                        -----------------------for testing - unlocked link for plain browser
-//                        .pathMatchers("/api/v1/skills").permitAll()
+                        .pathMatchers("/api/v1/skills").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(
