@@ -20,7 +20,9 @@ pipeline {
 
         stage('Run Spring Boot App') {
             steps {
-                sh 'docker-compose up --build'
+                dir('docker'){
+                    sh 'docker-compose up --build'
+                }
             }
         }
     }
