@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://your-repo-url.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean'
+                sh 'mvn package'
+                dir('ApiGateway') {
+                    sh 'docker build -t api-gateway-service .'
+                }
+            }
+        }
+
+        stage('Run Spring Boot App') {
+            steps {
+                sh 'docker-compose up --build'
+            }
+        }
+    }
+}

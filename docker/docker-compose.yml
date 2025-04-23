@@ -38,3 +38,38 @@ services:
           psql -h localhost -U keycloak -d keycloak < /docker-entrypoint-initdb.d/keycloak_backup.sql;
           wait;
         " ]
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8082:8082"
+      - "50000:50000"
+    environment:
+      - JENKINS_OPTS=--httpPort=8082
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+volumes:
+  jenkins_home:
+
+#  eureka-server-service:
+#    build: ./../EurekaServer
+#    container_name: eureka
+#    ports:
+#      - "8761:8761"
+#
+#  api-gateway-service:
+#    build: ./../ApiGateway
+#    container_name: api-gateway
+#    ports:
+#      - "8080:8090"
+#    depends_on:
+#      - eureka-server-service
+#
+#  compendium-client-service:
+#    build: ./../CompendiumClientService
+#    container_name: compendium-client
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - eureka-server-service

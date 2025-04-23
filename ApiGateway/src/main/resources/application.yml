@@ -28,12 +28,15 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+          # issuer uri is expected, but it doesnt work inside container
           issuer-uri: http://localhost:8090/realms/microservice-realm
+          # overriding address to fetch the keys from to one working inside container
+#          jwk-set-uri: http://keycloak:8080/realms/microservice-realm/protocol/openid-connect/certs
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/  # eureka----
 #  instance:
 #    hostname: localhost
 
