@@ -16,7 +16,7 @@ pipeline {
         stage('Run Spring Boot App') {
             steps {
                 dir('docker'){
-                    sh 'docker-compose up --build'
+                    sh 'docker-compose up --build -d'
                 }
             }
         }
