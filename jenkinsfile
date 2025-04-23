@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://your-repo-url.git'
-            }
-        }
 
         stage('Build') {
             steps {

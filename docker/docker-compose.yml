@@ -39,37 +39,24 @@ services:
           wait;
         " ]
 
-  jenkins:
-    image: jenkins/jenkins:lts
+  eureka-server-service:
+    build: ./../EurekaServer
+    container_name: eureka
     ports:
-      - "8082:8082"
-      - "50000:50000"
-    environment:
-      - JENKINS_OPTS=--httpPort=8082
-    volumes:
-      - jenkins_home:/var/jenkins_home
+      - "8761:8761"
 
-volumes:
-  jenkins_home:
+  api-gateway-service:
+    build: ./../ApiGateway
+    container_name: api-gateway
+    ports:
+      - "8080:8090"
+    depends_on:
+      - eureka-server-service
 
-#  eureka-server-service:
-#    build: ./../EurekaServer
-#    container_name: eureka
-#    ports:
-#      - "8761:8761"
-#
-#  api-gateway-service:
-#    build: ./../ApiGateway
-#    container_name: api-gateway
-#    ports:
-#      - "8080:8090"
-#    depends_on:
-#      - eureka-server-service
-#
-#  compendium-client-service:
-#    build: ./../CompendiumClientService
-#    container_name: compendium-client
-#    ports:
-#      - "8081:8081"
-#    depends_on:
-#      - eureka-server-service
+  compendium-client-service:
+    build: ./../CompendiumClientService
+    container_name: compendium-client
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server-service
