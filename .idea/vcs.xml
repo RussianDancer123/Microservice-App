@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docker/jenkins_home/caches/git-de6610c2f725e62a74d96b640a5c6f9c" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docker/jenkins_home/workspace/microservice app" vcs="Git" />
   </component>
 </project>
