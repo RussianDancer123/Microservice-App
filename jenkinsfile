@@ -5,9 +5,9 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean'
-                sh 'mvn package'
                 dir('ApiGateway') {
+                    sh 'mvn clean'
+                    sh 'mvn package'
                     sh 'docker build -t api-gateway-service .'
                 }
             }
