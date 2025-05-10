@@ -36,12 +36,13 @@ pipeline {
             }
         }
 
-        stage('Run Spring Boot App') {
-            steps {
-                dir('docker'){
-                    sh 'docker-compose up --build -d'
-                }
-            }
-        }
+//  dind refuses to work with postgres and keycloak so no deployment in jenkins
+//         stage('Run Spring Boot App') {
+//             steps {
+//                 dir('docker'){
+//                     sh 'docker-compose up --build -d'
+//                 }
+//             }
+//         }
     }
 }

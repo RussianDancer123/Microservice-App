@@ -1,24 +1,3 @@
-#version: '3.8'
-#services:
-#  jenkins:
-#    build: .
-#    image: jenkins-with-maven
-#    container_name: jenkins
-#    ports:
-#      - "8082:8082"
-#      - "50000:50000"
-#    environment:
-#      - JENKINS_OPTS=--httpPort=8082
-#    volumes:
-#      - jenkins_home:/var/jenkins_home
-#      - /var/run/docker.sock:/var/run/docker.sock
-##      - C:\Users\india\Microservice-App:/home/code
-#
-#volumes:
-#  jenkins_home:
-
-
-
 version: '3.8'
 
 services:
@@ -32,7 +11,6 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-#      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DOCKER_HOST=tcp://docker:2375
       - JENKINS_OPTS=--httpPort=8082
@@ -45,9 +23,9 @@ services:
     ports:
       - "2375:2375"
       - "8080:8080"
-      - "8090:8090" # - expose keycloak - leave if containerizing angular wont work
-      - "8761:8761"
-      - "8081:8081"
+      - "8090:8090"
+      - "8761:8761" #debug
+      - "8081:8081" #debug
     environment:
       - DOCKER_TLS_CERTDIR=
     command: [
