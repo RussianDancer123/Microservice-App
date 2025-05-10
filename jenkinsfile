@@ -9,6 +9,7 @@ pipeline {
                     sh 'mvn clean'
                     sh 'mvn package'
                     sh 'docker build -t api-gateway-service .'
+                }
                 dir('CompendiumClientService') {
                     sh 'mvn clean'
                     sh 'mvn package'
