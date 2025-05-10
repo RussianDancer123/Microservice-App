@@ -2,6 +2,18 @@ pipeline {
     agent any
 
     stages {
+        stage('Change ports') {
+            steps {
+                dir('ApiGateway/src/main/resources') {
+                    sh "yq eval '.spring.security.oauth2.resourceserver.jwt.jwk-set-uri = \"http://keycloak:8080/realms/microservice-realm/protocol/openid-connect/certs\"' -i application.yml"
+                    sh "yq eval '.eureka.client.serviceUrl.defaultZone = \"http://eureka:8761/eureka/\"' -i application.yml"
+                }
+                dir('CompendiumClientService/src/main/resources') {
+                    sh "yq eval '.spring.security.oauth2.resourceserver.jwt.jwk-set-uri = \"http://keycloak:8080/realms/microservice-realm/protocol/openid-connect/certs\"' -i application.yml"
+                    sh "yq eval '.eureka.client.serviceUrl.defaultZone = \"http://eureka:8761/eureka/\"' -i application.yml"
+                }
+            }
+        }
 
         stage('Build') {
             steps {
