@@ -11,6 +11,20 @@ pipeline {
                     sh 'docker build -t api-gateway-service .'
                 }
             }
+            steps {
+                dir('CompendiumClientService') {
+                    sh 'mvn clean'
+                    sh 'mvn package'
+                    sh 'docker build -t compendium-client-service .'
+                }
+            }
+            steps {
+                dir('EurekaServer') {
+                    sh 'mvn clean'
+                    sh 'mvn package'
+                    sh 'docker build -t eureka-service .'
+                }
+            }
         }
 
         stage('Run Spring Boot App') {

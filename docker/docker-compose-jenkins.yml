@@ -1,18 +1,56 @@
+#version: '3.8'
+#services:
+#  jenkins:
+#    build: .
+#    image: jenkins-with-maven
+#    container_name: jenkins
+#    ports:
+#      - "8082:8082"
+#      - "50000:50000"
+#    environment:
+#      - JENKINS_OPTS=--httpPort=8082
+#    volumes:
+#      - jenkins_home:/var/jenkins_home
+#      - /var/run/docker.sock:/var/run/docker.sock
+##      - C:\Users\india\Microservice-App:/home/code
+#
+#volumes:
+#  jenkins_home:
+
+
+
 version: '3.8'
+
 services:
   jenkins:
-    build: .
     image: jenkins-with-maven
     container_name: jenkins
+    privileged: true
+    user: jenkins
     ports:
       - "8082:8082"
       - "50000:50000"
-    environment:
-      - JENKINS_OPTS=--httpPort=8082
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-      - C:\Users\india\Microservice-App:/home/code
+#      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+      - JENKINS_OPTS=--httpPort=8082
+    depends_on:
+      - docker
+
+  docker:
+    image: docker:dind
+    privileged: true
+    ports:
+      - "2375:2375"
+    environment:
+      - DOCKER_TLS_CERTDIR=
+    command: [
+      "--host=tcp://0.0.0.0:2375",
+      "--host=unix:///var/run/docker.sock",
+      "--tls=false"
+    ]
 
 volumes:
   jenkins_home:
