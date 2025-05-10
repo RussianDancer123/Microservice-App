@@ -5,13 +5,14 @@ services:
     container_name: keycloak
     command: start-dev
     ports:
-      - "8090:8080"
+      - "8080:8080"
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KC_DB=postgres
       - KC_DB_URL_HOST=postgres
       - KC_DB_URL_DATABASE=keycloak
+      - KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak
       - KC_DB_USERNAME=keycloak
       - KC_DB_PASSWORD=keycloak
       - KC_HOSTNAME=localhost
@@ -49,7 +50,7 @@ services:
     build: ./../ApiGateway
     container_name: api-gateway
     ports:
-      - "8080:8090"
+      - "8090:8090"
     depends_on:
       - eureka-server-service
 

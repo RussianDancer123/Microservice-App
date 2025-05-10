@@ -45,6 +45,7 @@ services:
     ports:
       - "2375:2375"
       - "8080:8080"
+      - "8090:8090" # - expose keycloak - leave if containerizing angular wont work
       - "8761:8761"
       - "8081:8081"
     environment:
