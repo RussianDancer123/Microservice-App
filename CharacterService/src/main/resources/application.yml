@@ -1,0 +1,33 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: character-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/character
+    username: user
+    password: user
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # issuer uri is expected, but it doesnt work inside container
+          issuer-uri: http://localhost:8090/realms/microservice-realm
+          # overriding address to fetch the keys from to one working inside container (set up with jenkinsfile)
+#          jwk-set-uri: http://keycloak:8080/realms/microservice-realm/protocol/openid-connect/certs
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
