@@ -33,35 +33,15 @@ services:
     command: ["postgres", "-c", "listen_addresses=*"]
     volumes:
       - ./keycloak_backup.sql:/docker-entrypoint-initdb.d/keycloak_backup.sql
-#    entrypoint: [ "bash", "-c", "
-#          echo 'Restoring Keycloak database...';
-#          docker-entrypoint.sh postgres & sleep 5;
-#          psql -h localhost -U keycloak -d keycloak < /docker-entrypoint-initdb.d/keycloak_backup.sql;
-#          wait;
-#        " ]
-
-  postgres-character:
-    image: postgres:latest
-    container_name: postgres-character
-    restart: always
-    environment:
-      POSTGRES_DB: character
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: user
-    ports:
-      - "5433:5432"
-    command: [ "postgres", "-c", "listen_addresses=*" ]
-    volumes:
-      - ./player_character_backup.sql:/docker-entrypoint-initdb.d/player_character_backup.sql
 
   eureka-server-service:
-    build: ./../EurekaServer
+    image: russiandancer123/eureka-server-service:latest
     container_name: eureka
     ports:
       - "8761:8761"
 
   api-gateway-service:
-    build: ./../ApiGateway
+    image: russiandancer123/api-gateway-service:latest
     container_name: api-gateway
     ports:
       - "8080:8090"
@@ -69,7 +49,7 @@ services:
       - eureka-server-service
 
   compendium-client-service:
-    build: ./../CompendiumClientService
+    image: russiandancer123/compendium-client-service:latest
     container_name: compendium-client
     ports:
       - "8081:8081"
