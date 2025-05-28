@@ -40,44 +40,44 @@ services:
 #          wait;
 #        " ]
 
-  postgres-character:
-    image: postgres:latest
-    container_name: postgres-character
-    restart: always
-    environment:
-      POSTGRES_DB: character
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: user
-    ports:
-      - "5433:5432"
-    command: [ "postgres", "-c", "listen_addresses=*" ]
-    volumes:
-      - ./player_character_backup.sql:/docker-entrypoint-initdb.d/player_character_backup.sql
+#  postgres-character:
+#    image: postgres:latest
+#    container_name: postgres-character
+#    restart: always
+#    environment:
+#      POSTGRES_DB: character
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: user
+#    ports:
+#      - "5433:5432"
+#    command: [ "postgres", "-c", "listen_addresses=*" ]
+#    volumes:
+#      - ./player_character_backup.sql:/docker-entrypoint-initdb.d/player_character_backup.sql
 
-  frontend:
-    build: ./../MicroserviceFrontend
-    container_name: angular
-    ports:
-      - "4200:80"
-
-  eureka-server-service:
-    build: ./../EurekaServer
-    container_name: eureka
-    ports:
-      - "8761:8761"
-
-  api-gateway-service:
-    build: ./../ApiGateway
-    container_name: api-gateway
-    ports:
-      - "8080:8090"
-    depends_on:
-      - eureka-server-service
-
-  compendium-client-service:
-    build: ./../CompendiumClientService
-    container_name: compendium-client
-    ports:
-      - "8081:8081"
-    depends_on:
-      - eureka-server-service
+#  frontend:
+#    build: ./../MicroserviceFrontend
+#    container_name: angular
+#    ports:
+#      - "4200:80"
+#
+#  eureka-server-service:
+#    build: ./../EurekaServer
+#    container_name: eureka
+#    ports:
+#      - "8761:8761"
+#
+#  api-gateway-service:
+#    build: ./../ApiGateway
+#    container_name: api-gateway
+#    ports:
+#      - "8080:8090"
+#    depends_on:
+#      - eureka-server-service
+#
+#  compendium-client-service:
+#    build: ./../CompendiumClientService
+#    container_name: compendium-client
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - eureka-server-service
