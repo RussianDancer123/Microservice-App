@@ -54,6 +54,12 @@ services:
     volumes:
       - ./player_character_backup.sql:/docker-entrypoint-initdb.d/player_character_backup.sql
 
+  frontend:
+    build: ./../MicroserviceFrontend
+    container_name: angular
+    ports:
+      - "4200:80"
+
   eureka-server-service:
     build: ./../EurekaServer
     container_name: eureka
