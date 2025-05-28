@@ -1,4 +1,4 @@
-# 🚀 Project Name
+# 🚀 Microservice App
 
 A microservices-based application using Angular for the frontend, Spring Boot for the backend services, and Docker for containerization.
 
