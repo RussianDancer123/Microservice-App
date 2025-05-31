@@ -14,8 +14,9 @@ export class CompendiumApiService {
 
   constructor() {}
 
-  getEntries(entry: Entries): Observable<IEntry[]> {
-    const url: string = `${environment.apiUrl}/compendium/${entry}`;
+  getEntries(entry: Entries, page: number = 1): Observable<IEntry[]> {
+    // TODO: add angular pagination
+    const url: string = `${environment.apiUrl}/compendium/${entry}?page=${page}`;
     return this.http.get<IEntry[]>(url);
   }
 }

@@ -27,6 +27,7 @@ export class EntryChoiceListComponent{
     //empty before changing
     this.entries = [];
     this.compendiumApiService.getEntries(entry).subscribe((data) => {
+      console.log(data);
       this.entries = data;
     })
   }
