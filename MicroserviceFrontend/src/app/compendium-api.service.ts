@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {IEntry} from '../interfaces/IEntry';
 import {environment} from '../environments/environment.development';
 import {Entries} from './entries';
+import {Page} from '../interfaces/Page';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,8 @@ export class CompendiumApiService {
 
   constructor() {}
 
-  getEntries(entry: Entries, page: number = 1): Observable<IEntry[]> {
-    // TODO: add angular pagination
+  getEntries(entry: Entries, page: number): Observable<Page<IEntry>> {
     const url: string = `${environment.apiUrl}/compendium/${entry}?page=${page}`;
-    return this.http.get<IEntry[]>(url);
+    return this.http.get<Page<IEntry>>(url);
   }
 }

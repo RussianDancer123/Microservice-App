@@ -2,6 +2,7 @@
 
 /* 🌟 Menu Container */
 .menu {
+  flex: 0 0 auto;
   background-color: var(--menu-bg);
   padding: 15px;
   display: flex;

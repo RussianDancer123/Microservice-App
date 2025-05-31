@@ -19,7 +19,7 @@ public class CompendiumService implements ICompendiumService {
 
     @Override
     public Mono<Page<Entry>> getEntries(Entries entry, int page) {
-        int pageSize = 20;
+        int pageSize = 18;
         return compendiumClient.getEntries(entry)
                 .onErrorResume(e -> Mono.just(List.of()))
                 .defaultIfEmpty(List.of())

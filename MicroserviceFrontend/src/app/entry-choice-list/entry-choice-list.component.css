@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1 1 auto;
 }
 
 /* 🖱️ Buttons */
@@ -72,4 +73,80 @@
   .compendium-message {
     font-size: 1.5rem;
   }
+}
+
+.compendium-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  text-align: center;
+}
+
+.compendium-list li {
+  background-color: var(--list-item-bg);
+  color: var(--text-color);
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
+}
+
+.compendium-list li:hover {
+  background-color: var(--list-item-hover);
+  transform: translateY(-3px);
+}
+
+.compendium-section-pages {
+  position: fixed;
+  bottom: 5vh;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  user-select: none;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.compendium-section-pages button {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 3px 6px var(--shadow-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+}
+
+.compendium-section-pages button:hover:not(:disabled) {
+  background-color: var(--button-hover);
+  transform: scale(1.1);
+  box-shadow: 0 5px 12px var(--shadow-color);
+}
+
+.compendium-section-pages button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.page-info {
+  min-width: 140px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 600;
 }
