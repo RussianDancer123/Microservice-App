@@ -1,6 +1,19 @@
 # 🚀 Microservice App
 
-A microservices-based application using Angular for the frontend, Spring Boot for the backend services, and Docker for containerization.
+>A microservices-based application using Angular for the frontend, Spring Boot for backend services (also FastApi in the future), and Docker for containerization.
+
+---
+
+## 🧱 Architecture and Microservices
+
+>This project follows a microservices-based architecture, with each service handling a specific domain or responsibility.
+- **Eureka Server** – Service registry for enabling service discovery between microservices. *(to be replaced by Kubernetes in the future)*
+- **API Gateway** – Central entry point that routes incoming HTTP requests to appropriate backend services. *(will be adapted or replaced in Kubernetes)*
+- **Compendium Client Service** – Currently exposes a basic `GET` endpoint returning a simple entry from an external API. *(More features like full CRUD operations are planned)*
+- **Character Service** *(planned)* - CRUD API responsible for managing user-created entries, based on data from the **Compendium Client Service**, with MongoDB.
+- **User Service** *(planned, in FastAPI)* -  CRUD endpoints for managing Keycloak users and handling authentication tasks.
+- **Microservice Frontend** – Angular-based frontend that communicates with backend services via the API Gateway.
+- **Keycloak** – Intended for authentication and authorization.
 
 ---
 
@@ -28,7 +41,7 @@ cd docker
 docker-compose -f docker-compose-run.yml up --build
 ```
 
-### 🔧 Option 2: Run Angular + Backend Services manually (WIP)
+### 🔧 Option 2: Run Angular + Backend Services manually *(WIP)*
 
 ```bash
 # 1. Start DB and Keycloak
